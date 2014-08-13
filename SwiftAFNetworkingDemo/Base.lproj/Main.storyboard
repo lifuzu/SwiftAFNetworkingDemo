@@ -24,6 +24,11 @@
                                             <action selector="downloadImage:" destination="BYZ-38-t0r" id="gbd-2O-nI9"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem systemItem="trash" id="ETy-Fz-MM6">
+                                        <connections>
+                                            <action selector="deleteImage:" destination="BYZ-38-t0r" id="ca8-r5-CRS"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qf8-Tu-kpd">

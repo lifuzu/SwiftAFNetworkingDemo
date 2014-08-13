@@ -23,6 +23,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func downloadImage(sender: AnyObject) {
+        var image = loadImageWithFileName("background.png")
+        if image != nil {
+            println("image: " + image.description)
+            self.imageView.image = image
+            return
+        }
         var url = NSURL.URLWithString("http://www.raywenderlich.com/wp-content/uploads/2014/01/sunny-background.png")
         var request = NSURLRequest(URL: url)
 
@@ -42,18 +48,16 @@ class ViewController: UIViewController {
     func saveImage(image: UIImage, withFileName filename: String) {
         var path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         path = path.stringByAppendingPathComponent("SwiftAFNetworkingDemoImages/")
-        
-        var isDir: ObjCBool = false
-        if NSFileManager.defaultManager().fileExistsAtPath(path, isDirectory: &isDir) == nil {
-            if isDir == nil {
-                var error: NSError? = nil
-                NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil, error: &error)
-                NSLog("%@", error!)
-            }
-        }
+
+        var error: NSError? = nil
+        NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil, error: &error)
+        if error != nil { NSLog("%@", error!) }
+
         path = path.stringByAppendingPathComponent(filename)
         var imageData = UIImagePNGRepresentation(image)
-        NSLog("Writting: %d", imageData.writeToFile(path, atomically: true))
+        NSLog("Saving image at: %@", path)
+        NSFileManager.defaultManager().createFileAtPath(path, contents: imageData, attributes: nil)
+        //NSLog("Writting: %d", imageData.writeToFile(path, atomically: true))
     }
 
     func loadImageWithFileName(filename: String) -> UIImage {
@@ -61,7 +65,16 @@ class ViewController: UIViewController {
         path = path.stringByAppendingPathComponent("SwiftAFNetworkingDemoImages/")
         path = path.stringByAppendingPathComponent(filename)
 
+        NSLog("Loading image at: %@", path)
         return UIImage(contentsOfFile: path)
+    }
+
+    @IBAction func deleteImage(sender: AnyObject) {
+        var path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        path = path.stringByAppendingPathComponent("SwiftAFNetworkingDemoImages/")
+
+        var error: NSError? = nil
+        NSFileManager.defaultManager().removeItemAtPath(path, error: &error)
     }
 }
 
