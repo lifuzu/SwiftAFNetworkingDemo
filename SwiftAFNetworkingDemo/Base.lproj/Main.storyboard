@@ -12,25 +12,34 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleAspectFit" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qf8-Tu-kpd">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
-                            </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6P3-oO-Wqb">
+                            <toolbar autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="6P3-oO-Wqb">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="play" id="jcm-lP-bTz">
+                                    <barButtonItem systemItem="play" id="fSr-zn-T5c">
                                         <connections>
-                                            <action selector="downloadImage:" destination="BYZ-38-t0r" id="mO9-V4-Icl"/>
+                                            <action selector="downloadImage:" destination="BYZ-38-t0r" id="gbd-2O-nI9"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qf8-Tu-kpd">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="6P3-oO-Wqb" secondAttribute="bottom" id="7go-ht-8XO"/>
+                            <constraint firstAttribute="width" secondItem="Qf8-Tu-kpd" secondAttribute="width" id="DvO-Rw-97p"/>
+                            <constraint firstItem="Qf8-Tu-kpd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FqS-xK-uxr"/>
+                            <constraint firstAttribute="leading" secondItem="6P3-oO-Wqb" secondAttribute="leading" id="He7-yG-K2m"/>
+                            <constraint firstAttribute="width" secondItem="6P3-oO-Wqb" secondAttribute="width" id="Ym0-Wa-qMV"/>
+                            <constraint firstItem="Qf8-Tu-kpd" firstAttribute="trailing" secondItem="6P3-oO-Wqb" secondAttribute="trailing" id="eLE-wE-5SP"/>
+                            <constraint firstItem="Qf8-Tu-kpd" firstAttribute="leading" secondItem="6P3-oO-Wqb" secondAttribute="leading" id="uFb-rg-VqV"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
