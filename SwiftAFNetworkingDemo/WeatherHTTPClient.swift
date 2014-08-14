@@ -41,10 +41,10 @@ class WeatherHTTPClient: AFHTTPSessionManager {
         return WeatherHTTPClientSharedInstance
     }
 
-    func updateWeatherAtLocation(/*#location: CLLocation,*/ forNumberOfDays number: UInt) {
+    func updateWeatherAtLocation(#location: CLLocation, forNumberOfDays number: UInt) {
         var parameters = ["num_of_days": number, "format": "json", "key": WorldWeatherOnlineAPIKey] as Dictionary
-        //parameters["q"] = "%f,%f" // location.coordinate.latitude, location.coordinate.longitude
-        parameters["q"] = "32.35,141.43"
+        parameters["q"] = NSString(format: "%f,%f", location.coordinate.latitude, location.coordinate.longitude)
+        //parameters["q"] = "32.35,141.43"
 
         self.GET("weather.ashx", parameters: parameters, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
                 self.delegate?.weatherHTTPClient?(client: self, didUpdateWithWeather: responseObject)

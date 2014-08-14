@@ -19,7 +19,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="git-Kh-5Qd"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="WeatherDetailSugue" id="git-Kh-5Qd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -32,6 +32,12 @@
                         <barButtonItem systemItem="action" id="qoT-yi-AH9">
                             <connections>
                                 <action selector="actionTapped:" destination="pwN-zh-0sV" id="5V8-Kd-FKp"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Pyt-Ph-Ovh"/>
+                        <barButtonItem systemItem="trash" id="hHe-Az-gDz">
+                            <connections>
+                                <action selector="clear:" destination="pwN-zh-0sV" id="mHY-ym-Ej2"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -62,14 +68,10 @@
                                             <action selector="downloadImage:" destination="BYZ-38-t0r" id="gbd-2O-nI9"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dEe-gT-lyU"/>
                                     <barButtonItem systemItem="trash" id="ETy-Fz-MM6">
                                         <connections>
                                             <action selector="deleteImage:" destination="BYZ-38-t0r" id="ca8-r5-CRS"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem systemItem="action" id="wLU-Pv-eMn">
-                                        <connections>
-                                            <action selector="actionTapped:" destination="BYZ-38-t0r" id="DvH-Ns-QbL"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

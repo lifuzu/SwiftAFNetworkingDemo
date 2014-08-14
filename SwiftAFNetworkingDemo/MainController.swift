@@ -7,14 +7,50 @@
 //
 
 import UIKit
+import CoreLocation
 
-class MainController: UITableViewController, UIActionSheetDelegate {
+class MainController: UITableViewController, UIActionSheetDelegate, WeatherHTTPClientDelegate, CLLocationManagerDelegate {
 
     // Properties
     var weather: NSDictionary = [:]
+    var locationManager: CLLocationManager? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Initial location manager
+        self.locationManager = CLLocationManager()
+        if CLLocationManager.locationServicesEnabled() {
+            NSLog("Staring CLLocationManager")
+            switch(CLLocationManager.authorizationStatus()) {
+            case CLAuthorizationStatus.NotDetermined:
+                // User has not yet made a choice with regards to this application
+                NSLog("User has not yet made a choice")
+                break
+            case CLAuthorizationStatus.Restricted:
+                // This application is not authorized to use location services.  Due
+                // to active restrictions on location services, the user cannot change
+                // this status, and may not have personally denied authorization
+                NSLog("This application is not authorized to use location services.")
+                break
+            case CLAuthorizationStatus.Denied:
+                // User has explicitly denied authorization for this application, or
+                // location services are disabled in Settings
+                NSLog("User has explicitly denied authorization for this application.")
+                break
+            case CLAuthorizationStatus.Authorized:
+                // User has authorized this application to use location services
+                NSLog("User has authorized this application to use location services")
+                break
+            default:
+                break
+            }
+            self.locationManager?.delegate = self
+            self.locationManager?.distanceFilter = 200
+            self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        } else {
+            NSLog("Cann't staring CLLocationManager")
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -38,6 +74,12 @@ class MainController: UITableViewController, UIActionSheetDelegate {
         self.navigationController.setToolbarHidden(true, animated: true)
     }
 
+    @IBAction func clear(sender: AnyObject) {
+        self.title = ""
+        self.weather = [:]
+        self.tableView.reloadData()
+    }
+
     @IBAction func actionTapped(sender: AnyObject) {
         var actionSheet = UIActionSheet(title: "AFHTTPSessionManager", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
         actionSheet.addButtonWithTitle("HTTP GET")
@@ -49,6 +91,8 @@ class MainController: UITableViewController, UIActionSheetDelegate {
 
         actionSheet.showFromBarButtonItem(sender as UIBarButtonItem, animated: true)
     }
+
+    // #pragma mark - UIActionSheetDelegate
 
     func actionSheet(actionSheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
         // actionSheet.cancelButtonIndex = 0
@@ -106,9 +150,38 @@ class MainController: UITableViewController, UIActionSheetDelegate {
                     }))*/
             })
         } else if buttonIndex == 3 {
-            var client = WeatherHTTPClient.sharedInstance
-            client.updateWeatherAtLocation(/*location: "2,3", */forNumberOfDays: 5)
+            NSLog("Starting update location")
+            self.locationManager!.startUpdatingLocation()
         }
+    }
+
+    // #pragma mark - CLLocationManagerDelegate
+
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        // Last object contains the most recent location
+        var newLocation = locations.last as CLLocation
+        // If the location is more than 5 minutes old, ignore it
+        if newLocation.timestamp.timeIntervalSinceNow > 300 { return }
+
+        self.locationManager!.stopUpdatingLocation()
+
+        var client = WeatherHTTPClient.sharedInstance
+        client.delegate = self
+        client.updateWeatherAtLocation(location: newLocation, forNumberOfDays: 5)
+    }
+
+    // #pragma mark - WeatherHTTPClientDelegate
+
+    func weatherHTTPClient(#client: WeatherHTTPClient, didUpdateWithWeather weather: AnyObject) {
+        self.weather = weather as NSDictionary
+        self.title = "API Updated"
+        self.tableView.reloadData()
+    }
+
+    func weatherHTTPClient(#client: WeatherHTTPClient, didFailWithError error: NSError) {
+        var alert = UIAlertController(title: "Error Retrieving Weather", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     // MARK: - Table view data source
@@ -209,7 +282,6 @@ class MainController: UITableViewController, UIActionSheetDelegate {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -217,6 +289,5 @@ class MainController: UITableViewController, UIActionSheetDelegate {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

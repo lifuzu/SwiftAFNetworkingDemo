@@ -75,6 +75,8 @@ class ViewController: UIViewController, UIActionSheetDelegate {
 
         var error: NSError? = nil
         NSFileManager.defaultManager().removeItemAtPath(path, error: &error)
+        // Remove the image displayed
+        self.imageView.image = nil
     }
 }
 
