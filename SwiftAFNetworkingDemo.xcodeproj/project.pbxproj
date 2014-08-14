@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		624ECD45199C7276000D3E03 /* WeatherHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624ECD44199C7276000D3E03 /* WeatherHTTPClient.swift */; };
+		624ECD49199D2FF6000D3E03 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624ECD48199D2FF6000D3E03 /* MainController.swift */; };
 		627786A41999A3FF0019896D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627786A31999A3FF0019896D /* AppDelegate.swift */; };
 		627786A71999A3FF0019896D /* SwiftAFNetworkingDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 627786A51999A3FF0019896D /* SwiftAFNetworkingDemo.xcdatamodeld */; };
 		627786A91999A3FF0019896D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627786A81999A3FF0019896D /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 		068D59BE7A2B4CA684DD594D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		0CF70F9ED12649B3998A800F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		624ECD44199C7276000D3E03 /* WeatherHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherHTTPClient.swift; sourceTree = "<group>"; };
+		624ECD48199D2FF6000D3E03 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		62516760199AB8130015408F /* SwiftAFNetworkingDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftAFNetworkingDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		6277869E1999A3FF0019896D /* SwiftAFNetworkingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAFNetworkingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627786A21999A3FF0019896D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				627786A31999A3FF0019896D /* AppDelegate.swift */,
+				624ECD48199D2FF6000D3E03 /* MainController.swift */,
 				627786A81999A3FF0019896D /* ViewController.swift */,
 				627786AA1999A3FF0019896D /* Main.storyboard */,
 				627786AD1999A3FF0019896D /* Images.xcassets */,
@@ -267,6 +270,7 @@
 			files = (
 				627786A91999A3FF0019896D /* ViewController.swift in Sources */,
 				624ECD45199C7276000D3E03 /* WeatherHTTPClient.swift in Sources */,
+				624ECD49199D2FF6000D3E03 /* MainController.swift in Sources */,
 				627786A41999A3FF0019896D /* AppDelegate.swift in Sources */,
 				627786A71999A3FF0019896D /* SwiftAFNetworkingDemo.xcdatamodeld in Sources */,
 			);
