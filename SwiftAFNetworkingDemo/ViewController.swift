@@ -81,6 +81,9 @@ class ViewController: UIViewController, UIActionSheetDelegate {
         var actionSheet = UIActionSheet(title: "AFHTTPSessionManager", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
         actionSheet.addButtonWithTitle("HTTP GET")
         actionSheet.addButtonWithTitle("HTTP POST")
+        //actionSheet.addButtonWithTitle("HTTP PUT")
+        //actionSheet.addButtonWithTitle("HTTP DELETE")
+        // Refer to https://medium.com/@aommiez/afnetwork-integrate-swfit-80514b545b40
 
         actionSheet.showFromBarButtonItem(sender as UIBarButtonItem, animated: true)
     }
@@ -105,6 +108,9 @@ class ViewController: UIViewController, UIActionSheetDelegate {
                 NSLog(weather.description)
             }, failure: { ( task: NSURLSessionDataTask!, error: NSError!) -> Void in
                 NSLog("GET failed: %@", error)
+                var alert = UIAlertController(title: "Error Retrieving Weather", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             })
         } else if buttonIndex == 2 {
             manager.POST("weather.php", parameters: parameters, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
@@ -112,6 +118,26 @@ class ViewController: UIViewController, UIActionSheetDelegate {
                 NSLog(weather.description)
             }, failure: { ( task: NSURLSessionDataTask!, error: NSError!) -> Void in
                 NSLog("POST failed: %@", error)
+                var alert = UIAlertController(title: "Error Retrieving Weather", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+
+                // Handle actions within Alert
+                /*alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { action in
+                    switch action.style{
+                    case .Default:
+                        println("default")
+                        break
+
+                    case .Cancel:
+                        println("cancel")
+                        break
+
+                    case .Destructive:
+                        println("destructive")
+                        break
+                    }
+                }))*/
             })
         }
     }
