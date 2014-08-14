@@ -148,8 +148,29 @@ class MainController: UITableViewController, UIActionSheetDelegate {
             break
         }
 
+        // Display string
         let weatherDesc = daysWeather["weatherDesc"] as NSArray
         cell.textLabel.text = weatherDesc[0]["value"] as NSString
+
+        // Fetch icon according to the icon url in json
+        let weatherIconUrl = daysWeather["weatherIconUrl"] as NSArray
+        let url = NSURL(string: weatherIconUrl[0]["value"] as NSString)
+        let request = NSURLRequest(URL: url)
+        var placeholderImage = UIImage(named: "placeholder")
+
+        // Display icon
+        cell.imageView.setImageWithURLRequest(request, placeholderImage: placeholderImage, success: { [weak cell] request, response, image in
+                if cell != nil {
+                    cell!.imageView.image = image
+                }
+
+                if (tableView.visibleCells() as NSArray).containsObject(cell) {
+                    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+                }
+            }, failure: {request, response, error in
+                NSLog("%@", error)
+            })
+
         return cell
     }
 
