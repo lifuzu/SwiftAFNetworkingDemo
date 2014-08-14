@@ -8,15 +8,17 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
                             
     var window: UIWindow?
-
+    var locationManager: CLLocationManager = CLLocationManager()
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
+        locationManager.delegate = self
         return true
     }
 
