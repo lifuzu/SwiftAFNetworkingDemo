@@ -3,6 +3,9 @@ Demo AFNetworking Functions Using Swift/iOS 8/Xcode 6 Beta 5
 
 ### Functions Supported:
 Download Image
+Cache Image
+Cleanup Cached Image
+HTTP Get
 
 ### Here is the steps you need to run before opening the workspace:
 *1*. Install Cocoapods

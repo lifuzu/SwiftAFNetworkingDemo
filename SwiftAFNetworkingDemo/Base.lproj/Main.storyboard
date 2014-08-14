@@ -29,6 +29,11 @@
                                             <action selector="deleteImage:" destination="BYZ-38-t0r" id="ca8-r5-CRS"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem systemItem="action" id="wLU-Pv-eMn">
+                                        <connections>
+                                            <action selector="actionTapped:" destination="BYZ-38-t0r" id="DvH-Ns-QbL"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qf8-Tu-kpd">

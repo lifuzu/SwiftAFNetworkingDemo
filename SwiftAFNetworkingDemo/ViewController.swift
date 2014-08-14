@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIActionSheetDelegate {
                             
     @IBOutlet var imageView: UIImageView!
 
@@ -75,6 +75,43 @@ class ViewController: UIViewController {
 
         var error: NSError? = nil
         NSFileManager.defaultManager().removeItemAtPath(path, error: &error)
+    }
+
+    @IBAction func actionTapped(sender: AnyObject) {
+        var actionSheet = UIActionSheet(title: "AFHTTPSessionManager", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
+        actionSheet.addButtonWithTitle("HTTP GET")
+        actionSheet.addButtonWithTitle("HTTP POST")
+
+        //actionSheet.cancelButtonIndex = 2
+        actionSheet.showFromBarButtonItem(sender as UIBarButtonItem, animated: true)
+    }
+
+    func actionSheet(actionSheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
+//        if buttonIndex == actionSheet.cancelButtonIndex {
+//            return
+//        }
+
+        NSLog("the index is %d", buttonIndex)
+        var baseURL = NSURL(string: "http://www.raywenderlich.com/demos/weather_sample/")
+        var parameters = ["format": "json"]
+
+        var manager = AFHTTPSessionManager(baseURL: baseURL)
+        manager.responseSerializer = AFJSONResponseSerializer()
+
+        if buttonIndex == 1 {
+            manager.GET("weather.php", parameters: parameters, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+                var error: NSError? = nil
+                var weather = responseObject as NSDictionary
+                if error == nil {
+                    NSLog(weather.description)
+                } else {
+                    NSLog("Error: %@", error!)
+                }
+                }, failure: { ( task: NSURLSessionDataTask!, error: NSError!) -> Void in
+                    NSLog("GET failed!")
+                }
+            )
+        }
     }
 }
 
