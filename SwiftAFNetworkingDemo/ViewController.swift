@@ -82,14 +82,14 @@ class ViewController: UIViewController, UIActionSheetDelegate {
         actionSheet.addButtonWithTitle("HTTP GET")
         actionSheet.addButtonWithTitle("HTTP POST")
 
-        //actionSheet.cancelButtonIndex = 2
         actionSheet.showFromBarButtonItem(sender as UIBarButtonItem, animated: true)
     }
 
     func actionSheet(actionSheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
-//        if buttonIndex == actionSheet.cancelButtonIndex {
-//            return
-//        }
+        // actionSheet.cancelButtonIndex = 0
+        if buttonIndex == 0 {
+            return
+        }
 
         NSLog("the index is %d", buttonIndex)
         var baseURL = NSURL(string: "http://www.raywenderlich.com/demos/weather_sample/")
@@ -97,20 +97,22 @@ class ViewController: UIViewController, UIActionSheetDelegate {
 
         var manager = AFHTTPSessionManager(baseURL: baseURL)
         manager.responseSerializer = AFJSONResponseSerializer()
+        //manager.requestSerializer.setValue(“608c6c08443c6d933576b90966b727358d0066b4", forHTTPHeaderField: “X-Auth-Token”)
 
         if buttonIndex == 1 {
             manager.GET("weather.php", parameters: parameters, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
-                var error: NSError? = nil
                 var weather = responseObject as NSDictionary
-                if error == nil {
-                    NSLog(weather.description)
-                } else {
-                    NSLog("Error: %@", error!)
-                }
-                }, failure: { ( task: NSURLSessionDataTask!, error: NSError!) -> Void in
-                    NSLog("GET failed!")
-                }
-            )
+                NSLog(weather.description)
+            }, failure: { ( task: NSURLSessionDataTask!, error: NSError!) -> Void in
+                NSLog("GET failed: %@", error)
+            })
+        } else if buttonIndex == 2 {
+            manager.POST("weather.php", parameters: parameters, success: { (task: NSURLSessionDataTask!, responseObject: AnyObject!) -> Void in
+                var weather = responseObject as NSDictionary
+                NSLog(weather.description)
+            }, failure: { ( task: NSURLSessionDataTask!, error: NSError!) -> Void in
+                NSLog("POST failed: %@", error)
+            })
         }
     }
 }
