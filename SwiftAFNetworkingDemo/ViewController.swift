@@ -83,6 +83,7 @@ class ViewController: UIViewController, UIActionSheetDelegate {
         actionSheet.addButtonWithTitle("HTTP POST")
         //actionSheet.addButtonWithTitle("HTTP PUT")
         //actionSheet.addButtonWithTitle("HTTP DELETE")
+        actionSheet.addButtonWithTitle("Test SubClass")
         // Refer to https://medium.com/@aommiez/afnetwork-integrate-swfit-80514b545b40
 
         actionSheet.showFromBarButtonItem(sender as UIBarButtonItem, animated: true)
@@ -139,6 +140,9 @@ class ViewController: UIViewController, UIActionSheetDelegate {
                     }
                 }))*/
             })
+        } else if buttonIndex == 3 {
+            var client = WeatherHTTPClient.sharedInstance
+            client.updateWeatherAtLocation(/*location: "2,3", */forNumberOfDays: 5)
         }
     }
 }

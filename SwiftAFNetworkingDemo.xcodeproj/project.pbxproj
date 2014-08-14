@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		624ECD45199C7276000D3E03 /* WeatherHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624ECD44199C7276000D3E03 /* WeatherHTTPClient.swift */; };
 		627786A41999A3FF0019896D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627786A31999A3FF0019896D /* AppDelegate.swift */; };
 		627786A71999A3FF0019896D /* SwiftAFNetworkingDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 627786A51999A3FF0019896D /* SwiftAFNetworkingDemo.xcdatamodeld */; };
 		627786A91999A3FF0019896D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627786A81999A3FF0019896D /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		068D59BE7A2B4CA684DD594D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		0CF70F9ED12649B3998A800F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		624ECD44199C7276000D3E03 /* WeatherHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherHTTPClient.swift; sourceTree = "<group>"; };
 		62516760199AB8130015408F /* SwiftAFNetworkingDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftAFNetworkingDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		6277869E1999A3FF0019896D /* SwiftAFNetworkingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAFNetworkingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627786A21999A3FF0019896D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				627786A51999A3FF0019896D /* SwiftAFNetworkingDemo.xcdatamodeld */,
 				627786A11999A3FF0019896D /* Supporting Files */,
 				62516760199AB8130015408F /* SwiftAFNetworkingDemo-Bridging-Header.h */,
+				624ECD44199C7276000D3E03 /* WeatherHTTPClient.swift */,
 			);
 			path = SwiftAFNetworkingDemo;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				627786A91999A3FF0019896D /* ViewController.swift in Sources */,
+				624ECD45199C7276000D3E03 /* WeatherHTTPClient.swift in Sources */,
 				627786A41999A3FF0019896D /* AppDelegate.swift in Sources */,
 				627786A71999A3FF0019896D /* SwiftAFNetworkingDemo.xcdatamodeld in Sources */,
 			);
