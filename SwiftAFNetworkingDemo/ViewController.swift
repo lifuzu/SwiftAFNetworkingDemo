@@ -9,17 +9,32 @@
 import UIKit
 
 class ViewController: UIViewController, UIActionSheetDelegate {
-                            
+
+    // Properties
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var labelText: UILabel!
+    var weather: NSDictionary = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         //SVProgressHUD.showProgress(20.0)
+        NSLog(self.weather.description)
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        let weatherDesc = weather["weatherDesc"] as NSArray
+        self.title = weatherDesc[0]["value"] as NSString
+
+        if let temp = self.weather["tempMinC"] as? String {
+            self.labelText.text = NSString(format: "%@ - %@", self.weather["tempMinC"] as String, self.weather["tempMaxC"] as String)
+        } else {
+            self.labelText.text = NSString(format: "%@", self.weather["temp_C"] as String)
+        }
     }
 
     @IBAction func downloadImage(sender: AnyObject) {

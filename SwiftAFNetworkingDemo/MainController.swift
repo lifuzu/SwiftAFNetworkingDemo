@@ -288,6 +288,24 @@ class MainController: UITableViewController, UIActionSheetDelegate, WeatherHTTPC
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if segue.identifier == "WeatherDetailSegue" {
+            var cell = sender as UITableViewCell
+            var indexPath = self.tableView.indexPathForCell(cell)
+
+            let vc = segue.destinationViewController as ViewController
+            switch indexPath.section {
+            case 0:
+                let currentCondition = self.weather["data"]["current_condition"] as NSArray
+                vc.weather = currentCondition[0] as NSDictionary
+                NSLog(vc.weather.description)
+            case 1:
+                let upcomingWeather: AnyObject! = self.weather["data"]["weather"] as NSArray
+                vc.weather = upcomingWeather[indexPath.row] as NSDictionary
+                NSLog(vc.weather.description)
+            default:
+                break
+            }
+        }
     }
 
 }
