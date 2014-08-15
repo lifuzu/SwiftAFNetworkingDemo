@@ -24,3 +24,4 @@ $ open SwiftAFNetworkingDemo.xcworkspace
 ### References:
 1. http://cocoapods.org/
 2. https://medium.com/@kirualex/cocoapods-with-swift-e6f8ba8f0afc - How to create Bridging Header
+3. https://github.com/AFNetworking/AFNetworking/wiki/Getting-Started-with-AFNetworking - How to config AFNetworking in Podfile
